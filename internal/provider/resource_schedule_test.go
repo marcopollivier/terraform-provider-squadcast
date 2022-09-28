@@ -24,7 +24,7 @@ func TestAccResourceSchedule(t *testing.T) {
 				Config: testAccResourceScheduleConfig(scheduleName),
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttrSet(resourceName, "id"),
-					resource.TestCheckResourceAttr(resourceName, "team_id", "613611c1eb22db455cfa789f"),
+					resource.TestCheckResourceAttr(resourceName, "team_id", "62e338001974e645afe0204a"),
 					resource.TestCheckResourceAttr(resourceName, "name", scheduleName),
 					resource.TestCheckResourceAttr(resourceName, "description", ""),
 					resource.TestCheckResourceAttr(resourceName, "color", "#9900ef"),
@@ -34,7 +34,7 @@ func TestAccResourceSchedule(t *testing.T) {
 				Config: testAccResourceScheduleConfig_update(scheduleName),
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttrSet(resourceName, "id"),
-					resource.TestCheckResourceAttr(resourceName, "team_id", "613611c1eb22db455cfa789f"),
+					resource.TestCheckResourceAttr(resourceName, "team_id", "62e338001974e645afe0204a"),
 					resource.TestCheckResourceAttr(resourceName, "name", scheduleName),
 					resource.TestCheckResourceAttr(resourceName, "description", "some description here"),
 					resource.TestCheckResourceAttr(resourceName, "color", "#fff000"),
@@ -44,7 +44,7 @@ func TestAccResourceSchedule(t *testing.T) {
 				ResourceName:      resourceName,
 				ImportState:       true,
 				ImportStateVerify: true,
-				ImportStateId:     "613611c1eb22db455cfa789f:" + scheduleName,
+				ImportStateId:     "62e338001974e645afe0204a:" + scheduleName,
 			},
 		},
 	})
@@ -75,7 +75,7 @@ func testAccResourceScheduleConfig(scheduleName string) string {
 	return fmt.Sprintf(`
 resource "squadcast_schedule" "test" {
 	name = "%s"
-	team_id = "613611c1eb22db455cfa789f"
+	team_id = "62e338001974e645afe0204a"
 	color = "#9900ef"
 }
 	`, scheduleName)
@@ -85,7 +85,7 @@ func testAccResourceScheduleConfig_update(scheduleName string) string {
 	return fmt.Sprintf(`
 resource "squadcast_schedule" "test" {
 	name = "%s"
-	team_id = "613611c1eb22db455cfa789f"
+	team_id = "62e338001974e645afe0204a"
 	description = "some description here"
 	color = "#fff000"
 }
