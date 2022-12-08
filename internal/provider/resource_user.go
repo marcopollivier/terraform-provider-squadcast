@@ -52,7 +52,7 @@ func resourceUser() *schema.Resource {
 				Description:  "User role.",
 				Type:         schema.TypeString,
 				Required:     true,
-				ValidateFunc: validation.StringInSlice([]string{"user", "stakeholder"}, false),
+				ValidateFunc: validation.StringInSlice([]string{"user", "stakeholder", "account_owner"}, false),
 			},
 			"abilities": {
 				Description: "user abilities/permissions.",
@@ -152,11 +152,13 @@ func resourceUserUpdate(ctx context.Context, d *schema.ResourceData, meta any) d
 		return diag.Errorf("stakeholders cannot have special abilities")
 	}
 
-	_, err := client.UpdateUser(ctx, d.Id(), &api.UpdateUserReq{
-		Role: role,
-	})
-	if err != nil {
-		return diag.FromErr(err)
+	if d.HasChange("role") {
+		_, err := client.UpdateUser(ctx, d.Id(), &api.UpdateUserReq{
+			Role: role,
+		})
+		if err != nil {
+			return diag.FromErr(err)
+		}
 	}
 
 	if d.HasChange("abilities") {

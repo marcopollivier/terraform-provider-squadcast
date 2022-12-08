@@ -13,22 +13,23 @@ You can manage the members of a Team here.
 ## Example Usage
 
 ```terraform
-data "squadcast_team" "example_resource_name" {
+data "squadcast_team" "example_team" {
   name = "example team name"
 }
 
-data "squadcast_user" "example_resource_name" {
+data "squadcast_user" "example_user" {
   email = "test@example.com"
 }
 
-data "squadcast_team_role" "example_resource_name" {
+data "squadcast_team_role" "example_team_role" {
   name = "example role name"
+  team_id = data.squadcast_team.example_team.id
 }
 
-resource "squadcast_team_member" "test" {
-  team_id  = data.squadcast_team.example_resource_name.id
-  user_id  = data.squadcast_user.example_resource_name.id
-  role_ids = [data.squadcast_team_role.example_resource_name.id]
+resource "squadcast_team_member" "example_team_member" {
+  team_id  = data.squadcast_team.example_team.id
+  user_id  = data.squadcast_user.example_user.id
+  role_ids = [data.squadcast_team_role.example_team_role.id]
 }
 ```
 
