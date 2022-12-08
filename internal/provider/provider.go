@@ -11,7 +11,7 @@ import (
 )
 
 func init() {
-	// Set descriptions to support markdown syntax, this will be used in document generation
+	// Set descriptions to support Markdown syntax, this will be used in document generation
 	// and the language server.
 	schema.DescriptionKind = schema.StringMarkdown
 
@@ -71,7 +71,7 @@ func New(version string) func() *schema.Provider {
 					Type:        schema.TypeString,
 					Sensitive:   true,
 					Required:    true,
-					DefaultFunc: schema.EnvDefaultFunc("SQUADCAST_REFRESH_TOKEN", nil),
+					DefaultFunc: schema.EnvDefaultFunc("SQUADCAST_REFRESH_TOKEN", "31f35d6bbb18ca4f81cced0fbf63f02c9b449de78cf16a997bb2b572fe8aa0594dd22694515bb11d4eddb678dc3fa9c2d232343413d81101dc9a5182d682a728"),
 				},
 			},
 		}
